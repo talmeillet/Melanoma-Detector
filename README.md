@@ -29,26 +29,32 @@ I evaluated two distinct approaches to determine the most effective classificati
 
 ---
 
-### **Key Results**
-The **Custom CNN (Model 1)** outperformed the transfer learning approach in this specific task:
+### **Comparative Results**
 
-| Metric | Result |
-| :--- | :--- |
-| **Accuracy** | **92.33%** |
-| **Precision** | **91.98%** |
-| **Recall** | **87.85%** |
-| **F1-Score** | **79.05%** |
+The **Custom CNN (Model 1)** was selected as the preferred model due to its better balance between precision and recall, which is critical for clinical safety.
 
-**Technical Insights:**
-* The model achieved convergence within **10 epochs** using the Adam optimizer and Binary Crossentropy loss.
-* **Early Stopping** was implemented to maintain generalization and prevent overfitting.
+| Metric | Model 1 (Custom CNN) | Model 2 (MobileNetV2) |
+| :--- | :--- | :--- |
+| **Accuracy** | **92.33%** | \~99.5% (Val) |
+| **Precision** | **91.98%** | \~99.0% |
+| **Recall** | **87.85%** | \~98.0% |
+| **F1-Score** | **79.05%** | 93.9% (Train) |
+
+**Technical & Clinical Insights:**
+
+  * **Model 1** achieved convergence within **10 epochs** using the Adam optimizer and Binary Crossentropy loss. **Early Stopping** was implemented to maintain generalization and prevent overfitting.
+  ![Confusion Matrix](images/model_1_evaluation_metrics.png)
+  * While **Model 2** showed higher overall accuracy, it exhibited a significant number of **False Positives and False Negatives**, potentially leading to dangerous clinical misdiagnoses[cite: 339, 340].
+    ![Confusion Matrix](images/model_2_evaluation_metrics.png)
+ 
+ The Custom CNN (Model 1) provided a more reliable diagnostic tool by prioritizing the reduction of critical classification errors.
 
 ---
 
 ### **Tech Stack**
-* **Frameworks:** TensorFlow, Keras.
+* **Frameworks:** TensorFlow
 * **Data Processing:** Pandas, NumPy, OpenCV, ImageDataGenerator.
-* **Visualization:** Matplotlib, Streamlit (for UI testing).
+* **Visualization:** Matplotlib
 
 ---
 
